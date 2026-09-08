@@ -4,8 +4,21 @@ header,nav,footer{
 body{
     font-family: Arial, sans-serif;
     background-color: #31a337;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-li{
+main{
+    flex: 1;
+}
+nav li{
     display: inline-block;
-    margin-right: 20px;
+}
+nav ul{
+    padding-left: 0;
+    list-style: none;
+}
+img{
+    max-width: 100%;
+    height: auto;
 }
