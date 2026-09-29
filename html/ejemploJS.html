@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewsport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de JS</title>
+
+    <script>
+        function imagen1(){
+            document.getElementById(img2).src="../img/perrito1.jpg";
+        }
+        function imagen2{
+            document.getElementById(img2).src="../img/perrito2.jpg";
+        }
+    </script>
+</head>
+<body>
+    <h1>Ejemplo de JavaScript</h1>
+    <div style ="display: flex; justify-content: center; align-items: center;">
+    <img id="img2" style="align-items: center;" src="../img/perrito2.jpg" alt="imagen 2">
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <button style="margin: 10px;" onclick="imagen1()">Imagen 1</button>
+        <button style="margin: 10px;" onclick="imagen2()">Imagen 2</button>
+    </div>
+</body>
+</html>
