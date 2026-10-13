@@ -5,30 +5,30 @@
             document.getElementById("img1").src="../img/perrito2.jpg";
         }
 function sumar(){
-    var num1 = parseInt(document.getElementById("num1").value);
-    var num2 = parseInt(document.getElementById("num2").value);
-    var resultado = num1 + num2;
+    let num1 = parseInt(document.getElementById("num1").value);
+    let num2 = parseInt(document.getElementById("num2").value);
+    let resultado = num1 + num2;
     document.getElementById("resultado").innerHTML = "El resultado de la suma es: " + resultado;
 }
 function restar(){
-    var num1 = parseInt(document.getElementById("num1").value);
-    var num2 = parseInt(document.getElementById("num2").value);
-    var resultado = num1 - num2;
+    let  num1 = parseInt(document.getElementById("num1").value);
+    let num2 = parseInt(document.getElementById("num2").value);
+    let resultado = num1 - num2;
     document.getElementById("resultado").innerHTML = "El resultado de la resta es: " + resultado;
 }
 function multiplicar(){
-    var num1 = parseInt(document.getElementById("num1").value);
-    var num2 = parseInt(document.getElementById("num2").value);
-    var resultado = num1 * num2;
+    let num1 = parseInt(document.getElementById("num1").value);
+    let num2 = parseInt(document.getElementById("num2").value);
+    let resultado = num1 * num2;
     document.getElementById("resultado").innerHTML = "El resultado de la multiplicación es: " + resultado;
 }   
 function dividir(){
-    var num1 = parseInt(document.getElementById("num1").value);
-    var num2 = parseInt(document.getElementById("num2").value);
+    let num1 = parseInt(document.getElementById("num1").value);
+    let num2 = parseInt(document.getElementById("num2").value);
     if(num2 === 0){
         document.getElementById("resultado").innerHTML = "Error: No se puede dividir entre cero.";
     } else {
-        var resultado = num1 / num2;
+        let resultado = num1 / num2;
         document.getElementById("resultado").innerHTML = "El resultado de la división es: " + resultado;
         } 
 function limpiar(){
