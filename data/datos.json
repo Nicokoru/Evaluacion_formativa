@@ -1,0 +1,12 @@
+[
+  {"nombre": "Ana",       "edad": 22, "correo": "ana@correo.cl"},
+  {"nombre": "Luis",      "edad": 28, "correo": "luis@correo.cl"},
+  {"nombre": "Camila",    "edad": 19, "correo": "camila@correo.cl"},
+  {"nombre": "Diego",     "edad": 31, "correo": "diego@correo.cl"},
+  {"nombre": "Valentina", "edad": 25, "correo": "valentina@correo.cl"},
+  {"nombre": "Matías",    "edad": 27, "correo": "matias@correo.cl"},
+  {"nombre": "Javiera",   "edad": 23, "correo": "javiera@correo.cl"},
+  {"nombre": "Felipe",    "edad": 35, "correo": "felipe@correo.cl"},
+  {"nombre": "Constanza", "edad": 29, "correo": "constanza@correo.cl"},
+  {"nombre": "Benjamín",  "edad": 21, "correo": "benjamin@correo.cl"}
+]

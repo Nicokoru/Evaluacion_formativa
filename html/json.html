@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON - Mi primer Sitio</title>
+    <link rel="icon" href="../img/logo.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
+<body>
+    <header class="py-3 text-center bg-light">
+        <img src="../img/logo2.png" alt="Logo de mi sitio" width="80" height="80">
+        <h1 class="h2 mt-2">Práctico: JSON como base de datos</h1>
+        <p class="lead mb-0">Datos leídos con fetch() desde datos.json</p>
+    </header>
+
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid justify-content-center">
+            <ul class="navbar-nav flex-row flex-wrap gap-3">
+                <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="acercade.html">Acerca de</a></li>
+                <li class="nav-item"><a class="nav-link" href="servicios.html">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+                <li class="nav-item"><a class="nav-link" href="ejemploJS.html">JS</a></li>
+                <li class="nav-item"><a class="nav-link" href="calculadora.html">Calculadora</a></li>
+                <li class="nav-item"><a class="nav-link" href="localstorage.html">LocalStorage</a></li>
+                <li class="nav-item"><a class="nav-link active" href="json.html">JSON</a></li>
+                <li class="nav-item"><a class="nav-link" href="sheets.html">Google Sheet</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container my-5 bg-white p-4 rounded shadow-sm" style="max-width: 900px;">
+        <div class="d-flex gap-2 mb-3">
+            <button class="btn btn-primary" onclick="mostrarTodos()">Mostrar todos</button>
+            <button class="btn btn-success" onclick="filtrarMayores()">Mayores de 25 años</button>
+        </div>
+        <p id="info" class="text-muted"></p>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark"><tr><th>Nombre</th><th>Edad</th><th>Correo</th></tr></thead>
+                <tbody id="tabla"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="py-3 bg-dark text-white text-center">
+        <p class="mb-0">Todos los derechos reservados &copy; 2026</p>
+        <p class="mb-0">Nico Ruiz</p>
+    </footer>
+
+    <script>
+// Práctico JSON: base de datos simulada con datos.json
+const tbody = document.getElementById("tabla");
+const info = document.getElementById("info");
+let personas = [];
+
+// Rutas donde buscar datos.json (por si la carpeta quedó en otro lugar)
+const RUTAS = ["../data/datos.json", "../datos.json", "datos.json", "../js/datos.json"];
+
+// Copia de respaldo: se usa solo si no se puede leer ningún archivo
+const RESPALDO = [
+    {nombre: "Ana",       edad: 22, correo: "ana@correo.cl"},
+    {nombre: "Luis",      edad: 28, correo: "luis@correo.cl"},
+    {nombre: "Camila",    edad: 19, correo: "camila@correo.cl"},
+    {nombre: "Diego",     edad: 31, correo: "diego@correo.cl"},
+    {nombre: "Valentina", edad: 25, correo: "valentina@correo.cl"},
+    {nombre: "Matías",    edad: 27, correo: "matias@correo.cl"},
+    {nombre: "Javiera",   edad: 23, correo: "javiera@correo.cl"},
+    {nombre: "Felipe",    edad: 35, correo: "felipe@correo.cl"},
+    {nombre: "Constanza", edad: 29, correo: "constanza@correo.cl"},
+    {nombre: "Benjamín",  edad: 21, correo: "benjamin@correo.cl"}
+];
+
+function avisar(texto, tipo) {
+    info.className = "alert alert-" + tipo;
+    info.textContent = texto;
+}
+
+function dibujar(lista) {
+    tbody.innerHTML = lista.map(p =>
+        `<tr><td>${p.nombre}</td><td>${p.edad}</td><td>${p.correo}</td></tr>`
+    ).join("");
+    // Si hay un aviso de error no lo pisamos con el contador
+    if (!info.classList.contains("alert-danger") && !info.classList.contains("alert-warning")) {
+        info.className = "text-muted";
+        info.textContent = `Mostrando ${lista.length} de ${personas.length} personas`;
+    }
+}
+
+function mostrarTodos() {
+    dibujar(personas);
+}
+
+// Actividad: filtrar mayores de 25 años con filter()
+function filtrarMayores() {
+    const mayores = personas.filter(p => p.edad > 25);
+    dibujar(mayores);
+}
+
+async function cargar() {
+    for (const ruta of RUTAS) {
+        try {
+            const res = await fetch(ruta);
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            personas = await res.json();
+            console.log("datos.json cargado desde:", ruta);
+            mostrarTodos();
+            return;
+        } catch (e) {
+            console.warn("No se pudo leer", ruta, "->", e.message);
+        }
+    }
+    // Ninguna ruta funcionó: usamos el respaldo y avisamos
+    personas = RESPALDO;
+    mostrarTodos();
+    avisar("No se pudo leer datos.json (¿abriste el sitio sin Live Server o está en otra carpeta?). " +
+           "Se muestran los datos de respaldo. Revisa la consola (F12).", "warning");
+}
+
+cargar();
+
+    </script>
+</body>
+</html>
