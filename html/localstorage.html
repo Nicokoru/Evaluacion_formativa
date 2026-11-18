@@ -52,7 +52,7 @@
     </footer>
 
     <script>
-// Práctico LocalStorage: lista de tareas persistente en el navegador
+
 const CLAVE = "tareas";
 const input = document.getElementById("tarea");
 const lista = document.getElementById("lista");
@@ -119,7 +119,7 @@ function mostrar() {
         li.className = "list-group-item d-flex justify-content-between align-items-center";
 
         const span = document.createElement("span");
-        span.textContent = t.texto; // textContent evita inyección de HTML
+        span.textContent = t.texto; 
         span.style.cursor = "pointer";
         if (t.hecha) span.className = "text-decoration-line-through text-muted";
         span.addEventListener("click", () => alternar(i));

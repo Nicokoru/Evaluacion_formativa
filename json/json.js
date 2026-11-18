@@ -1,12 +1,12 @@
-// Práctico JSON: base de datos simulada con datos.json
+
 const tbody = document.getElementById("tabla");
 const info = document.getElementById("info");
 let personas = [];
 
-// Rutas donde buscar datos.json (por si la carpeta quedó en otro lugar)
+
 const RUTAS = ["../data/datos.json", "../datos.json", "datos.json", "../js/datos.json"];
 
-// Copia de respaldo: se usa solo si no se puede leer ningún archivo
+
 const RESPALDO = [
     {nombre: "Ana",       edad: 22, correo: "ana@correo.cl"},
     {nombre: "Luis",      edad: 28, correo: "luis@correo.cl"},
@@ -29,7 +29,7 @@ function dibujar(lista) {
     tbody.innerHTML = lista.map(p =>
         `<tr><td>${p.nombre}</td><td>${p.edad}</td><td>${p.correo}</td></tr>`
     ).join("");
-    // Si hay un aviso de error no lo pisamos con el contador
+
     if (!info.classList.contains("alert-danger") && !info.classList.contains("alert-warning")) {
         info.className = "text-muted";
         info.textContent = `Mostrando ${lista.length} de ${personas.length} personas`;
@@ -40,7 +40,7 @@ function mostrarTodos() {
     dibujar(personas);
 }
 
-// Actividad: filtrar mayores de 25 años con filter()
+
 function filtrarMayores() {
     const mayores = personas.filter(p => p.edad > 25);
     dibujar(mayores);
@@ -59,7 +59,7 @@ async function cargar() {
             console.warn("No se pudo leer", ruta, "->", e.message);
         }
     }
-    // Ninguna ruta funcionó: usamos el respaldo y avisamos
+
     personas = RESPALDO;
     mostrarTodos();
     avisar("No se pudo leer datos.json (¿abriste el sitio sin Live Server o está en otra carpeta?). " +
